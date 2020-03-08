@@ -42,5 +42,22 @@ namespace Chat_Chan
         }
 
         #endregion
+
+        public string ConvertErrorCodeMessage(int errorCode)
+        {
+            switch (errorCode)
+            {
+                case 400:
+                    return "400 - 権限がありません";
+                case 401:
+                    return "401 - 接続ユーザー数が上限に達しています";
+                case 402:
+                    return "402 - サーバーが起動していません";
+                case 418:
+                    return "418 - I'm a P2PDevelop";
+                default:
+                    return null;
+            }
+        }
     }
 }
