@@ -89,5 +89,10 @@ namespace Chat_Chan
                     return null;
             }
         }
+
+        public void DeSelializeJson()
+        {
+
+        }
     }
 }
