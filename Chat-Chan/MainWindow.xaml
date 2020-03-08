@@ -7,6 +7,80 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <!--#region レイアウト-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+        <!--#endregion-->
         
+        <!--#region コンソール-->
+        <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="接続" FontSize="30" FontWeight="SemiBold" TextAlignment="Center" />
+            <TextBlock Text="他のサーバーに接続してチャットを開始します。" TextAlignment="Center" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="tbSessionName" Grid.Column="0" />
+                <Button x:Name="btnSessionStart" Grid.Column="1" Content="接続" Click="BtnSessionStart_Click" />
+            </Grid>
+        </Grid>
+        <TextBox x:Name="tbConsole" Grid.Row="0" BorderThickness="1" Background="#282C34" Foreground="#DCDFE4" FontSize="12" Panel.ZIndex="5" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="15, 15" Panel.ZIndex="10">
+            <Button x:Name="btnEndSession" Grid.Row="0" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" Height="48" Width="48" Click="BtnEndSession_Click">
+                <Image Source="Images/exit.png" Height="35" Width="35" />
+            </Button>
+            <Button x:Name="btnSettings" Grid.Row="0" Background="Transparent" BorderBrush="Transparent" Margin="15, 0, 0, 0" Height="48" Width="48" Click="BtnSettings_Click">
+                <Image Source="Images/settings.png" Height="40" Width="40" />
+            </Button>
+        </StackPanel>
+        <!--#endregion-->
+
+        <!--#region チャット画面-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border>
+                <Border.Effect>
+                    <DropShadowEffect Direction="270" />
+                </Border.Effect>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Image Source="Images/chat.png" Height="25" Width="25" Margin="10, 5, 5, 5" />
+                    <TextBlock Grid.Row="0" Text="チャット" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10, 0, 0, 0" FontSize="15" />
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="tbChat" Grid.Row="1" IsReadOnly="True" VerticalScrollBarVisibility="Visible" />
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region 書き込み画面-->
+        <Border Grid.Row="1" Grid.ColumnSpan="2" Margin="30, 15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="tbSession" Grid.Column="0" Background="Transparent" BorderThickness="0" FontSize="15" IsEnabled="False" />
+                <Separator Grid.Column="1" Margin="5, 3, 0, 3" />
+                <Separator Grid.Column="1" Margin="5, 3, 0, 3" />
+                <TextBox x:Name="tbMessage" Grid.Column="2" Background="Transparent" BorderThickness="0" FontSize="15" IsEnabled="False" />
+                <Button x:Name="btnSend" Grid.Column="3" Background="Transparent" BorderThickness="0" Click="BtnSend_Click" IsEnabled="False">
+                    <Button.Content>
+                        <Image Source="Images/send.png" Width="28" Height="28" />
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Border>
+        <!--#endregion-->
     </Grid>
 </Window>
