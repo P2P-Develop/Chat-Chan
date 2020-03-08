@@ -2,6 +2,12 @@
 
 namespace Chat_Chan
 {
+    public enum SendMode : byte
+    {
+        Message = 0,
+        Chat = 1
+    }
+
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
@@ -65,7 +71,23 @@ namespace Chat_Chan
 
         private void BtnChatSend_Click(object sender, RoutedEventArgs e)
         {
-            
+
+        }
+
+        private void TbSession_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                tbMessage.Focus();
+            }
+        }
+
+        private void TbMessage_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+
+            }
         }
     }
 }
