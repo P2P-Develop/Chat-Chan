@@ -61,7 +61,17 @@
                     <TextBlock Grid.Row="0" Text="チャット" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10, 0, 0, 0" FontSize="15" />
                 </StackPanel>
             </Border>
-            <TextBox x:Name="tbChat" Grid.Row="1" IsReadOnly="True" VerticalScrollBarVisibility="Visible" />
+            <DockPanel Grid.Row="1">
+                <Border DockPanel.Dock="Bottom">
+                    <DockPanel>
+                        <Button x:Name="btnChatSend" Background="Transparent" BorderBrush="Transparent" DockPanel.Dock="Right" Click="BtnChatSend_Click">
+                            <Image Source="Images/send.png" Width="20" Height="20" />
+                        </Button>
+                        <TextBox x:Name="tbChatMessage" DockPanel.Dock="Left" />
+                    </DockPanel>
+                </Border>
+                <TextBox x:Name="tbChatReceive" Grid.Row="1" IsReadOnly="True" VerticalScrollBarVisibility="Visible" DockPanel.Dock="Top" />
+            </DockPanel>
         </Grid>
         <!--#endregion-->
 
@@ -78,10 +88,8 @@
                 <Separator Grid.Column="1" Margin="5, 3, 0, 3" />
                 <Separator Grid.Column="1" Margin="5, 3, 0, 3" />
                 <TextBox x:Name="tbMessage" Grid.Column="2" Background="Transparent" BorderThickness="0" FontSize="15" IsEnabled="False" />
-                <Button x:Name="btnSend" Grid.Column="3" Background="Transparent" BorderThickness="0" Click="BtnSend_Click" IsEnabled="False">
-                    <Button.Content>
-                        <Image Source="Images/send.png" Width="28" Height="28" />
-                    </Button.Content>
+                <Button x:Name="btnSend" Grid.Column="3" Background="Transparent" BorderBrush="Transparent" Click="BtnSend_Click" IsEnabled="False">
+                    <Image Source="Images/send.png"  Width="28" Height="28" />
                 </Button>
             </Grid>
         </Border>

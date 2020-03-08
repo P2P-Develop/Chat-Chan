@@ -7,6 +7,8 @@ namespace Chat_Chan
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string message;
+
         #region Constructor
 
         /// <summary>
@@ -23,7 +25,8 @@ namespace Chat_Chan
 
         private void BtnSend_Click(object sender, RoutedEventArgs e)
         {
-
+            tbMessage.Text = message;
+            tbMessage.Clear();
         }
 
         private void BtnSessionStart_Click(object sender, RoutedEventArgs e)
@@ -58,6 +61,11 @@ namespace Chat_Chan
                 default:
                     return null;
             }
+        }
+
+        private void BtnChatSend_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
