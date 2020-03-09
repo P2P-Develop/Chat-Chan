@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Net.Sockets;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace Chat_Chan
 {
@@ -12,22 +15,12 @@ namespace Chat_Chan
     }
 
     /// <summary>
-    /// チャット・コマンド・状態確認の送受信に使うポート
-    /// </summary>
-    public enum Ports : int
-    {
-        Message = 37564,
-        Command = 46573,
-        Status = 41410
-    }
-
-    /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string message;
-        public string chatmessage;
+        public string Message { get; set; }
+        public string Chatmessage { get; set; }
 
         #region Constructor
 
@@ -45,7 +38,7 @@ namespace Chat_Chan
 
         private void BtnSend_Click(object sender, RoutedEventArgs e)
         {
-            tbMessage.Text = message;
+            tbMessage.Text = Message;
             tbMessage.Clear();
         }
 
@@ -87,25 +80,59 @@ namespace Chat_Chan
 
         #endregion
 
-        public string ConvertErrorCodeMessage(int errorCode)
+        public string ConvertCodeMessage(int code)
         {
-            switch (errorCode)
+            switch (code)
             {
+                case 200:
+                    return "200 - 接続できます";
                 case 400:
                     return "400 - 権限がありません";
                 case 401:
                     return "401 - 接続ユーザー数が上限に達しています";
-                case 500:
-                    return "500 - サーバーが起動していません";
                 case 418:
                     return "418 - I'm a P2PDevelop";
+                case 500:
+                    return "500 - サーバーが起動していません";
                 default:
-                    return null;
+                    return "不明のエラーが発生しました";
             }
         }
 
         public void DeSelializeJson()
         {
+
+        }
+
+        public async void Connect(string user)
+        {
+            if (tbSessionName.Text.StartsWith(" "))
+            {
+                tbSessionError.Text = "セッション名が無効です";
+                return;
+            }
+
+            btnSessionStart.IsEnabled = false;
+            tbSessionName.IsEnabled = false;
+
+            await Task.Run(() =>
+            {
+                try
+                {
+
+                    using (TcpClient tcp = new TcpClient(tbSessionName.Text, 41410))
+                    {
+                        tbConsole.Visibility = Visibility.Visible;
+                        tbConsole.Clear();
+                        tbConsole.AppendText("[NET]TCP Client Started to " + tbSessionName.Text + ".");
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    tbSessionError.Text = ex.Message;
+                }
+            });
 
         }
     }

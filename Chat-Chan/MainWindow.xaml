@@ -35,6 +35,7 @@
             <TextBlock Text="名前" FontSize="15" />
             <TextBox x:Name="tbNickName" FontSize="15" Width="150" />
         </StackPanel>
+        <TextBlock x:Name="tbSessionError" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" Foreground="OrangeRed" />
         <TextBox x:Name="tbConsole" Grid.Row="0" BorderThickness="1" Background="#282C34" Foreground="#DCDFE4" FontSize="12" Panel.ZIndex="5" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="15, 15" Panel.ZIndex="10">
             <Button x:Name="btnEndSession" Grid.Row="0" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" Height="48" Width="48" Click="BtnEndSession_Click">
