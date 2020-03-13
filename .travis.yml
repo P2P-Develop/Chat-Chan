@@ -1,0 +1,5 @@
+language: csharp
+scrit: 
+  - xbuild /p:Configuration=Debug Chat-Chan.sln
+before_script:
+  - nuget restore Chat-Chan.sln
