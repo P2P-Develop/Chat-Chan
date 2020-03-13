@@ -1,7 +1,7 @@
 ---
 name: バグ報告(Japanese)
 about: バグを報告する際に使うテンプレート。
-title: ''
+title: 'バグ報告'
 labels: bug
 assignees: ''
 
