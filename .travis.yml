@@ -1,4 +1,6 @@
 language: csharp
+os:
+  - windows
 scrit: 
   - xbuild /p:Configuration=Debug Chat-Chan.sln
 before_script:
