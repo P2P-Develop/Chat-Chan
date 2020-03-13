@@ -1,4 +1,0 @@
-language: csharp
-solution: Chat-Chan.sln
-before_script:
-  - nuget restore Chat-Chan.sln
