@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -181,16 +180,14 @@ namespace Chat_Chan
                             // 受信したデータの蓄積
                             ms.Write(resBytes, 0, resSize);
                             // まだ読み取れるかデータの最後が\r\nでない時は受信を続ける
-                        } while (ns.DataAvailable || resBytes[resSize - 2] != '\r' && resBytes[resSize - 2] != '\n');
+                        } while (ns.DataAvailable || (resBytes[resSize - 2] != '\r' && resBytes[resSize - 2] != '\n'));
                         // 受信したデータを文字列に変換
                         string connectedJson = Encoding.UTF8.GetString(ms.GetBuffer(), 0, (int)ms.Length);
                         // エスケープ文字を削除
                         connectedJson = connectedJson.TrimEnd('\n');
                         connectedJson = connectedJson.TrimEnd('\r');
-                        JoinServerReceive = JsonConvert.DeserializeObject(connectedJson);
                         _sendBytes = Encoding.UTF8.GetBytes("{ \"exec\": \"leave\" }\r\n");
                         ns.Write(_sendBytes, 0, _sendBytes.Length);
-                        tcp.Close();
                     }
                 }
                 catch (Exception ex)
