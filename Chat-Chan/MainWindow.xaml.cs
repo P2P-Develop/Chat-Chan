@@ -186,8 +186,7 @@ namespace Chat_Chan
                         // エスケープ文字を削除
                         connectedJson = connectedJson.TrimEnd('\n');
                         connectedJson = connectedJson.TrimEnd('\r');
-                        _sendBytes = Encoding.UTF8.GetBytes("{ \"exec\": \"leave\" }\r\n");
-                        ns.Write(_sendBytes, 0, _sendBytes.Length);
+
                     }
                 }
                 catch (Exception ex)
