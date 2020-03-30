@@ -20,8 +20,8 @@ jobs:
       
     - name: Restore Nuget Package
     - uses: warrenbuckley/Setup-Nuget@v1
-    - run: nuget restore $Env:GITHUB_WORKSPACE\Chat-Chan.sln
+    - run: nuget restore .\Chat-Chan.sln
     
     - name: Build
     - uses: warrenbuckley/Setup-MSBuild@v1 
-    - run: msbuild ./Chat-Chan.sln $Env:GITHUB_WORKSPACE\Chat-Chan.sln -p:Configuration=Release
+    - run: msbuild .\Chat-Chan.sln -p:Configuration=Release
